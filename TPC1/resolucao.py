@@ -43,8 +43,6 @@ sorted_files = sorted(sorted_files, key=lambda x: x[0])
 for roadName, file in sorted_files:
     index_page += f"<li><a href='html/{roadName}.html'>{roadName}</a></li>"
 
-
-
 index_page += "</ul>"
 index_page += "<div style='background-color: #6a0303; height: 100px;'></div>"
 index_page += "</body></html>"
