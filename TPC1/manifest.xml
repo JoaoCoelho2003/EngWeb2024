@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<doc>
+    <meta>
+        <title>TPC1: Mapa das Ruas</title>
+        <date>2024-02-16</date>
+        <author>
+            <id>A100596</id>
+            <nome>João Coelho</nome>
+        </author>
+        <uc>
+            <sigla>EW2024</sigla>
+            <nome>Engenharia Web</nome>
+        </uc>
+    </meta>
+
+    <resumo>
+        <p>Este trabalho promove a criação de uma página estática que assuma o papel de um índice para as diversas ruas descritas nos vários ficheiros .xml.</p>
+        <p>Assim, é esperado que a mesma contenha os nomes de todas as ruas presentes dentro da pasta texto do material dado para o TPC e que, quando um dos nomes for pressionado, o utilizador será enviado para uma outra página que contenha os dados presentes no ficheiro xml da rua escolhida.</p>
+        <p>O aluno terá a liberdade de decidir como deve ser feita a apresentação dos dados dos ficheiros.</p>
+    </resumo>
+
+    <resultados>
+        <resultado>Página principal '/' com links para as páginas individuais de cada rua.</resultado>
+        <resultado>Página das ruas '/{nomeRua}' com os diversos detalhes sobre a rua, como o nome, a descrição, fotos e casas.</resultado>
+        <resultado>Scprit que valida a estrutura dos ficheiros .xml.</resultado>
+    </resultados>
+</doc>
