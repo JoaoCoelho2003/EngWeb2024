@@ -71,20 +71,28 @@ img {
 }
 
 /* Link styles */
+/* Link styles */
 a {
-    color: #6a0303;
-    text-decoration: underline;
-    text-decoration-color: #6a0303;
+    color: #007bff;
+    text-decoration: none;
 }
 
 a:hover {
     text-decoration: underline;
-    color: #6a0303;
 }
 
 h6 {
     text-align: center;
     margin-top: 20px;
+}
+
+.separator {
+    display: block;
+    height: 25px;
+    border: 0;
+    border-top: 25px solid #6a0303;
+    margin: 1em 0;
+    padding: 0;
 }
 
 

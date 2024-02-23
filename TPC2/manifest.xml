@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<doc>
+    <meta>
+        <title>TPC2: Página HTML das Cidades</title>
+        <date>2024-02-23</date>
+        <author>
+            <id>A100596</id>
+            <nome>João Coelho</nome>
+        </author>
+        <uc>
+            <sigla>EW2024</sigla>
+            <nome>Engenharia Web</nome>
+        </uc>
+    </meta>
+
+    <resumo>
+        <p>Desenvolvimento de uma página web de índice que lista todas as cidades por ordem alfabética com links para páginas individuais de cada cidade.</p>
+        <p>Criação de páginas individuais para cada cidade com detalhes sobre a população, descrição, distrito e conexões com outras cidades.</p>
+        <p>Nas conexões, têm de haver links para as cidades conectadas, bem como a distância entre a cidade de origem e destino.</p>
+    </resumo>
+
+    <resultados>
+        <resultado>Página principal '/' com links para as páginas individuais de cada cidade.</resultado>
+        <resultado>Página das cidades '/cX' com detalhes sobre a população, descrição, distrito e conexões com outras cidades.</resultado>
+    </resultados>
+</doc>
