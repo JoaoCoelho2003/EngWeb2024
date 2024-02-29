@@ -9,6 +9,7 @@ const { Console } = require('console');
 http.createServer((req, res) => {
     console.log(req.method + ' ' + req.url);
     res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+    var id;
 
     var q = url.parse(req.url, true);
     if (q.pathname == '/') {
@@ -24,7 +25,7 @@ http.createServer((req, res) => {
             .then(dados => {
                 res.write("<ul>");
                 for (i in dados.data) {
-                    res.write("<li><a href='" + dados.data[i].id + "'>" + dados.data[i].title + "</a></li>");
+                    res.write("<li><a href='" + "/filmes/" + dados.data[i].id + "'>" + dados.data[i].title + "</a></li>");
                 }
                 res.end();
             })
@@ -37,7 +38,7 @@ http.createServer((req, res) => {
             .then(dados => {
                 res.write("<ul>");
                 for (i in dados.data) {
-                    res.write("<li><a href='" + dados.data[i].id + "'>" + dados.data[i].id + "</a></li>");
+                    res.write("<li><a href='" + "/genero/" + dados.data[i].id + "'>" + dados.data[i].id + "</a></li>");
                 }
                 res.end();
             })
@@ -50,7 +51,7 @@ http.createServer((req, res) => {
             .then(dados => {
                 res.write("<ul>");
                 for (i in dados.data) {
-                    res.write("<li><a href='" + dados.data[i].id + "'>" + dados.data[i].id + "</a></li>");
+                    res.write("<li><a href='" + "/atores/" + dados.data[i].id + "'>" + dados.data[i].id + "</a></li>");
                 }
                 res.end();
             })
@@ -58,7 +59,62 @@ http.createServer((req, res) => {
                 console.log('Erro: ' + err);
                 res.end();
             });
-    } else {
+    }
+
+    else if (q.pathname.includes('/atores/')) {
+        id = q.pathname.split('/')[2]
+        axios.get('http://localhost:17001/filmes?cast=' + id)
+            .then(dados => {
+                id = id.replace(/%20/g, " ");
+                res.write("<h2>" + id + "</h2>");
+                res.write("<ul>");
+                for(i in dados.data){
+                    res.write("<a href='" + "/filmes/" + dados.data[i].id + "'>" + dados.data[i].title + "</a></li><br>");
+                }
+                res.write("</ul>");
+                res.end();
+            })
+            .catch(err => {
+                console.log('Erro: ' + err);
+                res.end();
+            });
+    }
+    else if (q.pathname.includes('/filmes/')) {
+        id = q.pathname.split('/')[2]
+        axios.get('http://localhost:17001/filmes/' + id)
+            .then(dados => {
+                res.write("<h2>" + dados.data.title + "</h2>");
+                res.write("<p>Ano: " + dados.data.year + "</p>");
+                res.write("<p>Genero: " + dados.data.genre + "</p>");
+                res.write("<p>Elenco: " + dados.data.cast + "</p>");
+                res.end();
+            })
+            .catch(err => {
+                console.log('Erro: ' + err);
+                res.end();
+            });
+        }
+
+    else if (q.pathname.includes('/genero/')) {
+        id = q.pathname.split('/')[2]
+        axios.get('http://localhost:17001/filmes?genres=' + id)
+            .then(dados => {
+                id = id.replace(/%20/g, " ");
+                res.write("<h2>" + id + "</h2>");
+                res.write("<ul>");
+                for(i in dados.data){
+                    res.write("<a href='" + "/filmes/" + dados.data[i].id + "'>" + dados.data[i].title + "</a></li><br>");
+                }
+                res.write("</ul>");
+                res.end();
+            })
+            .catch(err => {
+                console.log('Erro: ' + err);
+                res.end();
+            });
+    
+    }
+    else {
         res.write("<p>Pedido não suportado: " + q.pathname + "</p>");
         res.end();
     }
