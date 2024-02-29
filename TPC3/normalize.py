@@ -22,8 +22,8 @@ def create_filmes(data):
             "_id": item["_id"]["$oid"],
             "title": item["title"],
             "year": str(item["year"]),
-            "cast": ', '.join(item["cast"]) if isinstance(item["cast"], list) else item["cast"],
-            "genres": ', '.join(item.get("genres", [])) if isinstance(item.get("genres", []), list) else item.get("genres", "")
+            "genres": item.get("genres", []),
+            "cast": item.get("cast", [])
         }
         filmes.append(new_item)
         
