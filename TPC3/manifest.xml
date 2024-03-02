@@ -1,0 +1,36 @@
+<doc>
+    <meta>
+        <title>TPC3: Listagem de Filmes, Géneros e Atores</title>
+        <date>2024-03-02</date>
+        <author>
+            <id>A100596</id>
+            <nome>João Coelho</nome>
+        </author>
+        <uc>
+            <sigla>EW2024</sigla>
+            <nome>Engenharia Web</nome>
+        </uc>
+    </meta>
+
+    <resumo>
+        <p>Este projeto consiste na criação de um servidor Node.js que fornece uma página web com uma lista de filmes, géneros e atores, cada um com seus respectivos links. O servidor utiliza o JSON Server para fornecer os dados necessários.</p>
+        <p>O projeto tem como objetivo:</p>
+        <ul>
+            <li>Desenvolver uma página web de índice que liste todos os filmes, géneros e atores, com links para páginas individuais de cada um;</li>
+            <li>Criar páginas individuais para cada filme, género e ator, fornecendo detalhes relevantes como título, ano, elenco, entre outros;</li>
+            <li>As páginas dos atores devem fornecer uma lista de todos os filmes em que os mesmos participaram e, por sua vez, as páginas dos géneros devem listar todos os filmes que entram na categoria selecionada.</li>
+        </ul>
+    </resumo>
+
+    <resultados>
+        <resultado>Página principal '/' com links para as páginas índice dos filmes, atores e géneros.</resultado>
+        <resultado>
+            <p>Páginas individuais para cada filme, género e ator com detalhes relevantes sobre cada um.</p>
+            <ul>
+                <li>Na página individual de um filme, aparece a informação detalhada sobre o filme, incluindo título, ano, elenco, entre outros;</li>
+                <li>Na página individual de um ator, são listados todos os filmes em que o ator participou, com links para as páginas individuais de cada filme;</li>
+                <li>Na página individual de um género, são listados todos os filmes que pertencem a esse género, com links para as páginas individuais de cada filme.</li>
+            </ul>
+        </resultado>
+    </resultados>
+</doc>

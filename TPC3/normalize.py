@@ -27,17 +27,14 @@ def create_filmes(data):
         }
         filmes.append(new_item)
         
-        # Adding genres to the separator
         for genre in item.get("genres", []):
             if genre not in generos:
                 generos.append(genre)
                 
-        # Adding cast members to the separator
         for actor in item.get("cast", []):
             if actor not in atores:
                 atores.append(actor)
                 
-    # Creating separators
     generos_separator = [{"id": name} for i, name in enumerate(generos, 1)]
     atores_separator = [{"id": name} for i, name in enumerate(atores, 1)]
     

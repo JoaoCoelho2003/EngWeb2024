@@ -13,7 +13,7 @@ http.createServer((req, res) => {
 
     var q = url.parse(req.url, true);
     if (q.pathname == '/') {
-        res.write("<h2>Escola de Música</h2>");
+        res.write("<h2>Seleção de Filmes</h2>");
         res.write("<ul>");
         res.write("<li><a href='/filmes'>Filmes</a></li>");
         res.write("<li><a href='/genero'>Género</a></li>");
