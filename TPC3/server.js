@@ -25,7 +25,7 @@ http.createServer((req, res) => {
             .then(dados => {
                 res.write("<ul>");
                 for (i in dados.data) {
-                    res.write("<li><a href='" + "/filmes/" + dados.data[i].title + "'>" + dados.data[i].title + "</a></li>");
+                    res.write("<li><a href='" + "/filmes/" + dados.data[i].id + "'>" + dados.data[i].title + "</a></li>");
                 }
                 res.end();
             })
@@ -70,7 +70,7 @@ http.createServer((req, res) => {
                 res.write("<h2>" + id + "</h2>");
                 res.write("<ul>");
                 for (const filme of filmes) {
-                    res.write("<a href='" + "/filmes/" + filme.title + "'>" + filme.title + "</a></li><br>");
+                    res.write("<a href='" + "/filmes/" + filme.id + "'>" + filme.title + "</a></li><br>");
                 }
                 res.write("</ul>");
                 res.end();
@@ -82,14 +82,14 @@ http.createServer((req, res) => {
     }    
     else if (q.pathname.includes('/filmes/')) {
         id = q.pathname.split('/')[2]
-        axios.get('http://localhost:17001/filmes?title=' + id)
+        axios.get('http://localhost:17001/filmes?id=' + id)
             .then(dados => {
                 filme = dados.data[0];
                 console.log(dados.data); // Add this line to see the response
-                console.log('http://localhost:17001/filmes?title=' + id);
+                console.log('http://localhost:17001/filmes?id=' + id);
                 res.write("<h2>" + filme.title + "</h2>");
                 res.write("<p>Ano: " + filme.year + "</p>");
-                res.write("<p>Genero: " + filme.genre + "</p>");
+                res.write("<p>Genero: " + filme.genres + "</p>");
                 res.write("<p>Elenco: " + filme.cast + "</p>");
                 res.end();
             })
@@ -108,7 +108,7 @@ http.createServer((req, res) => {
                 res.write("<h2>" + id + "</h2>");
                 res.write("<ul>");
                 for (const filme of filmes) {
-                    res.write("<a href='" + "/filmes/" + filme.title + "'>" + filme.title + "</a></li><br>");
+                    res.write("<a href='" + "/filmes/" + filme.id + "'>" + filme.title + "</a></li><br>");
                 }
                 res.write("</ul>");
                 res.end();
