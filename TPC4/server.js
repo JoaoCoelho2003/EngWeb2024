@@ -71,6 +71,17 @@ http.createServer(function (req, res) {
                         res.end()
                     })
                 }
+                else if(req.url == "/periodos/registo"){
+                    console.log("entrou")
+                    res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'})
+                    res.write(templates.periodoFormPage(d))
+                    res.end()
+                }
+                else if(req.url == "/compositores/registo"){
+                    res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'})
+                    res.write(templates.compositorFormPage(d))
+                    res.end()
+                }
                 else if(/\/periodos\/[A-Za-z]+$/i.test(req.url)){
                     var periodo = req.url.split("/")[2]
                     getCompositoresByPeriodo(periodo)
@@ -85,11 +96,6 @@ http.createServer(function (req, res) {
                         res.write("<p>" + erro + "</p>")
                         res.end()
                     })
-                }
-                else if(req.url == "/periodos/registo"){
-                    res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'})
-                    res.write(templates.periodoFormPage(d))
-                    res.end()
                 }
                 else if(/\/periodos\/edit\/[A-Za-z]+$/i.test(req.url)){
                     var periodo = req.url.split("/")[3]
@@ -136,11 +142,6 @@ http.createServer(function (req, res) {
                         res.write("<p>" + erro + "</p>")
                         res.end()
                     })
-                }
-                else if(req.url == "/compositores/registo"){
-                    res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'})
-                    res.write(templates.compositorFormPage(d))
-                    res.end()
                 }
                 else if(/\/compositores\/edit\/C[0-9]+$/i.test(req.url)){
                     var id = req.url.split("/")[3]

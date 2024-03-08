@@ -157,7 +157,7 @@ exports.periodoFormPage = function(d){
     return pagHTML
 }
 
-exports.periodoFormEditPage = function(a, d){
+exports.periodoFormEditPage = function(data, d) {
     return `
     <!DOCTYPE html>
     <html>
@@ -176,7 +176,8 @@ exports.periodoFormEditPage = function(a, d){
                     <fieldset>
                         <legend>Metadata</legend>
                         <label>Period</label>
-                        <input class="w3-input w3-round" type="text" name="id"/>
+                        <input class="w3-input w3-round" type="text" name="id" value="${data.id}"/>
+                        <!-- Add other fields for period data here -->
                     </fieldset>
                     <br/>
                     <button class="w3-btn w3-purple w3-mb-2" type="submit">Register</button>
@@ -187,7 +188,7 @@ exports.periodoFormEditPage = function(a, d){
             </div>
         </body>
     </html>
-    `
+    `;
 }
 
 exports.compositoresListPage = function(slist, d){

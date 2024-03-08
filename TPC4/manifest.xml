@@ -1,0 +1,46 @@
+<doc>
+    <meta>
+        <title>TPC4: Compositores e os diversos Periodos - Servidor Web Para Gerenciamento</title>
+        <date>2024-03-08</date>
+        <author>
+            <id>A100596</id>
+            <nome>João Coelho</nome>
+        </author>
+        <uc>
+            <sigla>EW2024</sigla>
+            <nome>Engenharia Web</nome>
+        </uc>
+    </meta>
+
+    <resumo>
+        <p>Neste trabalho, foi desenvolvido um sistema de gerenciamento de compositores e períodos musicais, utilizando um servidor JSON para armazenar e fornecer os dados. O objetivo é facilitar o armazenamento e a visualização de informações relacionadas a esses artistas e períodos históricos.</p>
+        <p>Os principais objetivos do projeto são:</p>
+        <ul>
+            <li>Implementar o Dataset no JSON-Server para fornecer acesso aos dados pela aplicação web.</li>
+            <li>Criar um conjunto de rotas para listar compositores, períodos e detalhes sobre cada um.</li>
+            <li>Desenvolver um serviço com operações CRUD para manipulação de dados sobre compositores e períodos musicais.</li>
+        </ul>
+    </resumo>
+
+    <resultados>
+        <resultado>Página inicial com links para páginas de compositores e períodos.</resultado>
+        <resultado>
+            <p>Páginas para listagem de compositores e períodos, com opções para visualizar, editar, excluir e adicionar.</p>
+            <ul>
+                <li>Página para detalhes de um compositor específico, incluindo informações detalhadas sobre o mesmo.</li>
+                <li>Página para listagem de compositores de um período musical específico.</li>
+            </ul>
+        </resultado>
+        <resultado>
+            <p>Páginas de CRUD para compositores e períodos musicais, permitindo registar, editar e excluir informações.</p>
+            <ul>
+                <li>Página para registar um novo compositor.</li>
+                <li>Página para editar informações de um compositor existente.</li>
+                <li>Página para confirmar a exclusão de um compositor.</li>
+                <li>Página para registar um novo período musical.</li>
+                <li>Página para editar informações de um período musical existente.</li>
+                <li>Página para confirmar a exclusão de um período musical.</li>
+            </ul>
+        </resultado>
+    </resultados>
+</doc>
