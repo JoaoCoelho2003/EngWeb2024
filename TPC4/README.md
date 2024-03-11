@@ -56,7 +56,7 @@ $ node server.js
 Isso iniciará o servidor Node.js na porta `8080`logo, para usufruir do site criado. basta dirigir-se ao seu navegador web e colocar o seguinte endereço na barra de pesquisa:
 
 ```
-http://localhost:8080
+$ http://localhost:8080
 ```
 
 ## Páginas do Site
