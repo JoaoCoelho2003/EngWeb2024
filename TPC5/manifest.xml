@@ -1,0 +1,42 @@
+<doc>
+    <meta>
+        <title>TPC5: Compositores e os diversos Periodos - Servidor Web Para Gerenciamento Utilizando Express</title>
+        <date>2024-03-17</date>
+        <author>
+            <id>A100596</id>
+            <nome>João Coelho</nome>
+        </author>
+        <uc>
+            <sigla>EW2024</sigla>
+            <nome>Engenharia Web</nome>
+        </uc>
+    </meta>
+
+    <resumo>
+        <p>Neste projeto, o principal objetivo foi desenvolver um sistema para gerir informações sobre compositores e os diferentes períodos musicais em que estes se destacaram. Utilizou-se um servidor JSON para armazenar e disponibilizar esses dados. As rotas principais, `/compositores` e `/periodos`, permitem aceder a listas de todos os compositores e períodos musicais, respetivamente. Além disso, as rotas `/compositores/{id}` e `/periodos/{id}` permitem ver detalhes específicos sobre um compositor ou a lista de compositores relacionados com o período selecionado. Assim, foi criada uma interface web que permitisse aos utilizadores visualizar, adicionar, editar e apagar informações sobre compositores e períodos musicais, facilitando a navegação entre diferentes páginas para aceder a esses recursos e realizar várias operações. É importante destacar que, ao contrário do trabalho da semana anterior, este projeto utilizou a framework <code>Express</code> para definir as rotas do servidor.</p>
+    </resumo>
+
+    <resultados>
+        <resultado>
+            <p>Página inicial com links para páginas de compositores e períodos.</p>
+        </resultado>
+        <resultado>
+            <p>Páginas para listagem de compositores e períodos, com opções para visualizar, editar, excluir e adicionar.</p>
+            <ul>
+                <li>Página para detalhes de um compositor específico, incluindo informações detalhadas sobre o mesmo.</li>
+                <li>Página para listagem de compositores de um período musical específico.</li>
+            </ul>
+        </resultado>
+        <resultado>
+            <p>Páginas de CRUD para compositores e períodos musicais, permitindo registar, editar e excluir informações.</p>
+            <ul>
+                <li>Página para registar um novo compositor.</li>
+                <li>Página para editar informações de um compositor existente.</li>
+                <li>Página para confirmar a exclusão de um compositor.</li>
+                <li>Página para registar um novo período musical.</li>
+                <li>Página para editar informações de um período musical existente.</li>
+                <li>Página para confirmar a exclusão de um período musical.</li>
+            </ul>
+        </resultado>
+    </resultados>
+</doc>
