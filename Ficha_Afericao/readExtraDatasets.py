@@ -6,9 +6,8 @@ def create_modalidades(datasets):
     for dataset in datasets:
         with open(dataset, 'r') as file:
             data = json.load(file)
-            pessoas = data.get('pessoas', [])
             
-            for pessoa in pessoas:
+            for pessoa in data:
                 desportos = pessoa.get('desportos', [])
                 cod = pessoa.get('BI')
 
@@ -26,9 +25,28 @@ def create_modalidades(datasets):
     with open('./datasets/modalidades.json', 'w') as file:
         json.dump(modalidades_dict, file, indent=4)
 
+def update_dataset(dataset):
+
+    with open(dataset) as file:
+        data = json.load(file)
+
+    for pessoa in data:
+        if 'BI' in pessoa:
+            pessoa["id"] = pessoa.pop("BI")
+
+        else:
+            pessoa["id"] = pessoa.pop("CC")
+
+
+    with open(dataset,'w') as file:
+        json.dump(data,file,indent=4,ensure_ascii=False)
+
+
 def main():
     datasets = ['./datasets/dataset-extra1.json', './datasets/dataset-extra2.json', './datasets/dataset-extra3.json']
     create_modalidades(datasets)
+    update = "./datasets/new_dataset.json"
+    update_dataset(update)
 
 if __name__ == '__main__':
     main()

@@ -2,16 +2,15 @@ var express = require('express');
 var router = express.Router();
 var modalidadeController = require("../controllers/modalidade");
 
-router.get('/:id', async (req, res) => {
-    try {
-        const modalidade = await modalidadeController.findById(req.params.id);
-        if (modalidade == null) {
-            return res.status(404).json({ message: 'Modalidade not found' });
-        }
-        res.json(modalidade);
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
+
+router.get('/:modalidade', function(req, res, next) {
+    modalidadeController.getPessoasPerModalidade(req.params.modalidade)
+        .then(function(modalidades) {
+            res.json(modalidades);
+        })
+        .catch(function(err) {
+            next(err);
+        });
 });
 
 router.get('/', function(req, res, next) {
@@ -59,16 +58,5 @@ router.post('/add/:nome', function(req, res) {
       })
   });
 
-
-
-router.get('/:modalidade', function(req, res, next) {
-    modalidadeController.getPessoasPerModalidade()
-        .then(function(modalidades) {
-            res.json(modalidades);
-        })
-        .catch(function(err) {
-            next(err);
-        });
-});
 
 module.exports = router;

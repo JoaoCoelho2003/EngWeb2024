@@ -1,4 +1,5 @@
 const Modalidade = require("../models/modalidade");
+const Pessoa = require("../models/pessoa");
 
 module.exports.list = () => {
     return Modalidade
@@ -41,54 +42,45 @@ module.exports.addPessoa = (nome, person) => {
         .exec()
 }
 
-module.exports.listPerOrder = () => {
-    return Modalidade
-        .find()
-        .sort({ nome: 1 })
-        .exec()
-        .then(modalidades => {
-            var modalidadesList = []
-            var last = ""
-            modalidades.forEach(modalidade => {
-                if (modalidade.nome != last) {
-                    modalidadesList.push(modalidade)
-                    last = modalidade.nome
-                }
-            })
-            return modalidadesList
-        })
-}
+module.exports.listPerOrder = async () => {
+    try {
+        const modalidades = await Modalidade.find().select('nome').sort('nome');
+        const uniqueNames = [...new Set(modalidades.map(modalidade => modalidade.nome))];
+        return uniqueNames;
+    } catch (error) {
+        console.error("Error occurred:", error);
+        return [];
+    }
+};
 
 
-module.exports.getPessoasPerModalidade = () => {
-    return Modalidade
-        .find()
-        .sort({ nome: 1 })
-        .exec()
-        .then(modalidades => {
-            var modalidadesList = []
-            var last = ""
-            modalidades.forEach(modalidade => {
-                if (modalidade.nome != last) {
-                    modalidadesList.push(modalidade)
-                    last = modalidade.nome
-                }
-            })
-            return modalidadesList
-        })
-        .then(modalidades => {
-            var pessoas = []
-            modalidades.forEach(modalidade => {
-                modalidade.pessoas.forEach(pessoa => {
-                    pessoas.push(pessoa)
-                })
-            })
-            return pessoas
-        })
-        .then(pessoas => {
-            return pessoas.sort()
-        })
-}
+module.exports.getPessoasPerModalidade = async (modalidade) => {
+    try {
+        const modalidadeObj = await Modalidade.findOne({ nome: modalidade }).exec();
+
+        if (!modalidadeObj) {
+            return [];
+        }
+
+        const pessoas_cods = modalidadeObj.pessoas;
+
+        const nomes = await Promise.all(pessoas_cods.map(async (personId) => {
+            const pessoa_schema = await Pessoa.findOne({ id: personId }).exec();
+            return pessoa_schema?.nome;
+        }));
+
+
+        return nomes.sort();
+        
+    } catch (error) {
+        console.error("Error occurred:", error);
+        return [];
+    }
+};
+
+
+
+
 
 
 

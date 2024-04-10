@@ -27,12 +27,11 @@ def add_database(files):
                 modalidades.append(new_item)
 
                 v = requests.post("http://localhost:3000/modalidades/new", json=new_item)
-                print("Sent new modalidade: " + modalidade + "\t" + str(v.status_code))
+                print("Sent new modalidade: " + modalidade + "   " + str(v.status_code))
             v = requests.post("http://localhost:3000/pessoas/registo", json=item)
-            print("Sent new pessoa: " + item["id"] + "\t" + str(v.status_code))
+            print("Sent new pessoa: " + item["id"] + "   " + str(v.status_code))
             v = requests.post("http://localhost:3000/modalidades/add/" + modalidade, json=item)
-            print("Sent new pessoa to modalidade: " + item["id"] + " to " + modalidade + "\t" + str(v.status_code))
-    modalidades_dict = []
+            print("Sent new pessoa to modalidade: " + item["id"] + " to " + modalidade + "   " + str(v.status_code))
 
     for modalidade in modalidades:
         new_item = {
@@ -42,7 +41,6 @@ def add_database(files):
         for item in data:
             if modalidade in item['desportos']:
                 new_item["pessoas"].append(item["_id"])
-        modalidades_dict.append(new_item)
 
 if __name__ == "__main__":
     add_database(['./datasets/dataset-extra1.json', './datasets/dataset-extra2.json', './datasets/dataset-extra3.json'])

@@ -8,7 +8,6 @@ const pessoaSchema = new mongoose.Schema({
     cidade: String,
     distrito: String
   },
-  BI: String,
   descrição: String,
   profissao: String,
   partido_politico: {
@@ -32,7 +31,8 @@ const pessoaSchema = new mongoose.Schema({
     gosta_animais_estimacao: Boolean,
     gosta_dancar: Boolean,
     comida_favorita: String
-  }
+  },
+  id: String
 });
 
 const Pessoa = mongoose.model('Pessoa', pessoaSchema);
