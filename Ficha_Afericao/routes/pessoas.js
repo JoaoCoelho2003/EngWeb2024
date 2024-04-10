@@ -2,8 +2,8 @@ var express = require('express');
 var router = express.Router();
 var pessoaController = require("../controllers/pessoa");
 
-router.post('/', function(req, res, next) {
-  pessoaController.create(req.body)
+router.post('/registo', function(req, res, next) {
+  pessoaController.insert(req.body)
     .then(function(pessoa) {
       res.status(201).json(pessoa);
     })

@@ -1,4 +1,3 @@
-const mongoose = require('mongoose');
 const Pessoa = require("../models/pessoa");
 
 module.exports.list = () => {
@@ -15,8 +14,13 @@ module.exports.findById = id => {
 }
 
 module.exports.insert = pessoa => {
-    var newPessoa = new Pessoa(pessoa);
-    return newPessoa.save();
+    if ((Pessoa.findOne({id: pessoa.id}).exec()) != null) {
+        var pessoa = new Pessoa(pessoa)
+        return pessoa.save()
+    }
+    else {
+        return null
+    }
 }
 
 module.exports.update = (id, pessoa) => {

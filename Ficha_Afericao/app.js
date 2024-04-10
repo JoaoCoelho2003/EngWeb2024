@@ -14,8 +14,9 @@ db.once('open', () => {
   console.log("Conexão ao MongoDB realizada com sucesso");
 });
 
-
+var indexRouter = require('./routes/index');
 var pessoasRouter = require('./routes/pessoas');
+var modalidadesRouter = require('./routes/modalidades');
 
 var app = express();
 
@@ -29,7 +30,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/', indexRouter);
 app.use('/pessoas', pessoasRouter);
+app.use('/modalidades', modalidadesRouter);
 
 app.use(function(req, res, next) {
   next(createError(404));
