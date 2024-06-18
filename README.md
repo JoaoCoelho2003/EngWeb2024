@@ -10,4 +10,6 @@ UC do 3ºAno de Engenharia Informática na Universidade do Minho.
 
 **Email:** a100596@alunos.uminho.pt(institutional email) / jhcoelho03@gmail.com(personal email)
 
-**Fotografia:** ![File Not Found](fotoJo.jpg)
+**Fotografia:** 
+
+![File Not Found](fotoJo.png)
