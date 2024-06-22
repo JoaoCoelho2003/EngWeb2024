@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27018:27017"
+    depends_on:
+      - mongo-seed
+  mongo-seed:
+    container_name: tpc6-mongo-seed
+    image: mongo:latest
+    volumes:
+      - ./datasets/compositoresFinal.json:/datasets/compositoresFinal.json
+      - ./datasets/periodos.json:/datasets/periodos.json
+    command: /bin/bash -c "mongoimport --host mongodb -d tpc6 -c compositores --type json --file ./datasets/compositoresFinal.json --jsonArray && mongoimport --host mongodb -d tpc6 -c periodos --type json --file ./datasets/periodos.json --jsonArray"

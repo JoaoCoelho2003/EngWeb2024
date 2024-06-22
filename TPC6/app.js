@@ -5,8 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
 
-var mongoDB = 'mongodb://127.0.0.1/tpc6';
-mongoose.connect(mongoDB);
+mongoose.connect('mongodb://localhost:27018/tpc6', {useNewUrlParser: true, useUnifiedTopology: true});
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'Error while connecting to MongoDB:'));
 db.once('open', function() {

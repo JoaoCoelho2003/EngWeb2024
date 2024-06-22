@@ -8,16 +8,13 @@
 
 ## Introdução
 
-Neste projeto, o principal objectivo foi desenvolver um sistema para gerir informações sobre compositores e os diferentes períodos musicais em que estes se destacaram. 
-Utilizou-se um servidor JSON para armazenar e disponibilizar esses dados. As rotas principais, `/compositores` e `/periodos`, permitem aceder a listas de todos os compositores e períodos musicais, respetivamente. 
-Além disso, as rotas `/compositores/{id}` e `/periodos/{id}` permitem ver detalhes específicos sobre um compositor ou a lista de compositores relacionados com o período selecionado. Assim, foi criada uma interface web que permitisse aos utilizadores visualizar, adicionar, editar e apagar informações sobre compositores e períodos musicais, facilitando a navegação entre diferentes páginas para aceder a esses recursos e realizar várias operações.
-É importante destacar que, ao contrário do trabalho da semana anterior, este projeto utilizou a framework `Express` para definir as rotas do servidor.
+Neste projeto, o principal objetivo foi desenvolver um sistema para gerir informações sobre compositores e os diferentes períodos musicais em que estes se destacaram, utilizando o framework Express para definir as rotas do servidor. Este trabalho é quase idêntico ao desenvolvido na semana anterior, com a exceção de que, nesta semana, utilizamos o MongoDB em vez do JSON Server para armazenar e disponibilizar os dados.
 
 ## Objetivos
 
 Assim, mais resumidamente, os objetivos do trabalho são:
 
-- `Implementar o Dataset no JSON-Server:` Carregar os dados sobre compositores e períodos musicais num servidor JSON para fornecer acesso aos dados pela aplicação web.
+- `Criação da Base de Dados no MongoDB:` Configuração inicial da base de dados no MongoDB para armazenar informações sobre compositores e períodos musicais.
 
 - `Criação de um conjunto de rotas importantes:`
     - `/compositores:` Rota para listar todos os compositores.
@@ -30,21 +27,25 @@ Assim, mais resumidamente, os objetivos do trabalho são:
 
 ## Instruções de Uso
 
-Antes de iniciar o servidor, é necessário preparar o arquivo `improved_compositores.json`, que será utilizado como dataset para o servidor JSON. Para isso, execute o seguinte comando:
+Antes de iniciar o servidor, é necessário preparar os datasets, já que o dataset original não se encontrava no formato JSON Array e não separava os períodos musicais dos compositores. Para isso, foi desenvolvido um script Python que, ao ser executado, cria dois ficheiros JSON em formato JSON Array, um para os compositores e outro para os períodos musicais. Para executar o script Python, utilize o seguinte comando:
 
 ```
 $ python3 improveJson.py
 ```
 
-Este comando irá executar o script Python `improve_dataset.py`, que melhora a estrutura do dataset original, `compositores.json`, e guarda o resultado com o nome `improved_compositores.json`. Certifique-se de que o ficheiro compositores.json esteja presente na mesma diretoria do script Python antes de executá-lo.
-
-Antes de iniciar o servidor web, certifique-se de executar o seguinte comando para iniciar o servidor JSON que fornece os dados para a aplicação:
+Assim sendo, com os dois datasets prontos, podemos continuar com a configuração do trabalho. Assim sendo, depois ainda é necessário recorrer a um outro script Python para criar um docker compose que irá criar a base de dados no MongoDB e importar os datasets para a mesma. Para executar o script Python, utiliza-se o seguinte comando:
 
 ```
-$ json-server --port 17001 --watch improved_compositores.json
+$ python3 createDocker.py tpc6EngWeb tp6EngWeb compositores TPC6/datasets/compositoresFinal.json periodos TPC6/datasets/periodos.json 
 ```
 
-Este comando irá iniciar o servidor JSON na porta 17001 e monitorar as alterações no ficheiro `improved_compositores.json`, que contém os dados sobre os compositores e períodos musicais.
+Se tudo correr bem, será criado um ficheiro `docker-compose.yml` que, ao ser executado, irá tratar de toda a configuração da base de dados no MongoDB. Para executar o docker compose, utilize o seguinte comando:
+
+
+
+```
+$ (sudo) docker-compose up -d
+```
 
 Por fim, para iniciar o projeto, certifique-se de instalar todas as dependências necessárias. Na diretoria do projeto, execute o seguinte comando:
 

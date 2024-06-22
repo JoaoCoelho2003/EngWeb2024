@@ -1,7 +1,7 @@
 <doc>
     <meta>
-        <title>TPC5: Compositores e os diversos Periodos - Servidor Web Para Gerenciamento Utilizando Express</title>
-        <date>2024-03-17</date>
+        <title>TPC6: Compositores e os diversos Periodos - Utilizando MongoDB</title>
+        <date>2024-06-22</date>
         <author>
             <id>A100596</id>
             <nome>João Coelho</nome>
@@ -13,30 +13,72 @@
     </meta>
 
     <resumo>
-        <p>Neste projeto, o principal objetivo foi desenvolver um sistema para gerir informações sobre compositores e os diferentes períodos musicais em que estes se destacaram. Utilizou-se um servidor JSON para armazenar e disponibilizar esses dados. As rotas principais, `/compositores` e `/periodos`, permitem aceder a listas de todos os compositores e períodos musicais, respetivamente. Além disso, as rotas `/compositores/{id}` e `/periodos/{id}` permitem ver detalhes específicos sobre um compositor ou a lista de compositores relacionados com o período selecionado. Assim, foi criada uma interface web que permitisse aos utilizadores visualizar, adicionar, editar e apagar informações sobre compositores e períodos musicais, facilitando a navegação entre diferentes páginas para aceder a esses recursos e realizar várias operações. É importante destacar que, ao contrário do trabalho da semana anterior, este projeto utilizou a framework <code>Express</code> para definir as rotas do servidor.</p>
+        <p>Neste projeto, o principal objetivo foi desenvolver um sistema para gerir informações sobre compositores e os diferentes períodos musicais em que estes se destacaram, utilizando o framework Express para definir as rotas do servidor. Este trabalho é quase idêntico ao desenvolvido na semana anterior, com a exceção de que, nesta semana, utilizamos o MongoDB em vez do JSON Server para armazenar e disponibilizar os dados.</p>
     </resumo>
 
-    <resultados>
-        <resultado>
-            <p>Página inicial com links para páginas de compositores e períodos.</p>
-        </resultado>
-        <resultado>
-            <p>Páginas para listagem de compositores e períodos, com opções para visualizar, editar, excluir e adicionar.</p>
-            <ul>
-                <li>Página para detalhes de um compositor específico, incluindo informações detalhadas sobre o mesmo.</li>
-                <li>Página para listagem de compositores de um período musical específico.</li>
-            </ul>
-        </resultado>
-        <resultado>
-            <p>Páginas de CRUD para compositores e períodos musicais, permitindo registar, editar e excluir informações.</p>
-            <ul>
-                <li>Página para registar um novo compositor.</li>
-                <li>Página para editar informações de um compositor existente.</li>
-                <li>Página para confirmar a exclusão de um compositor.</li>
-                <li>Página para registar um novo período musical.</li>
-                <li>Página para editar informações de um período musical existente.</li>
-                <li>Página para confirmar a exclusão de um período musical.</li>
-            </ul>
-        </resultado>
-    </resultados>
+    <objetivos>
+        <item>
+            <titulo>Criação da Base de Dados no MongoDB:</titulo>
+            <descricao>Configuração inicial da base de dados no MongoDB para armazenar informações sobre compositores e períodos musicais.</descricao>
+        </item>
+        <item>
+            <titulo>Criação de um conjunto de rotas importantes:</titulo>
+            <descricao>
+                <ul>
+                    <li><code>/compositores:</code> Rota para listar todos os compositores.</li>
+                    <li><code>/compositores/{id}:</code> Rota para obter informações detalhadas sobre um compositor específico.</li>
+                    <li><code>/compositores?periodo={periodo}:</code> Rota para listar compositores de um período musical específico.</li>
+                    <li><code>/periodos:</code> Rota para listar todos os períodos musicais.</li>
+                    <li><code>/periodos/{id}:</code> Rota para obter informações detalhadas sobre um período musical específico.</li>
+                </ul>
+            </descricao>
+        </item>
+        <item>
+            <titulo>Implementar um Serviço com Operações CRUD:</titulo>
+            <descricao>Desenvolver um serviço que ofereça operações CRUD (Create, Read, Update, Delete) para manipulação de dados sobre compositores e períodos musicais.</descricao>
+        </item>
+    </objetivos>
+
+    <instrucoes_de_uso>
+        <passo>
+            <titulo>Preparar os datasets:</titulo>
+            <descricao>
+                <p>O dataset original não se encontrava no formato JSON Array e não separava os períodos musicais dos compositores. Utilize o seguinte comando para preparar os datasets:</p>
+                <code>$ python3 improveJson.py</code>
+            </descricao>
+        </passo>
+        <passo>
+            <titulo>Criar o Docker Compose:</titulo>
+            <descricao>
+                <p>Utilize o seguinte comando para criar o Docker Compose que irá configurar a base de dados no MongoDB e importar os datasets:</p>
+                <code>$ python3 createDocker.py tpc6EngWeb tp6EngWeb compositores TPC6/datasets/compositoresFinal.json periodos TPC6/datasets/periodos.json</code>
+                <p>Se tudo correr bem, será criado um ficheiro <code>docker-compose.yml</code> que, ao ser executado, irá configurar toda a base de dados no MongoDB.</p>
+            </descricao>
+        </passo>
+        <passo>
+            <titulo>Iniciar o servidor Node.js:</titulo>
+            <descricao>
+                <ul>
+                    <li>Instale todas as dependências necessárias executando o seguinte comando na diretoria do projeto:</li>
+                    <code>$ npm i</code>
+                    <li>Após instalar as dependências, inicie o servidor Node.js com o seguinte comando:</li>
+                    <code>$ npm start</code>
+                    <li>O servidor Node.js será iniciado na porta <code>1503</code>.</li>
+                </ul>
+            </descricao>
+        </passo>
+        <passo>
+            <titulo>Acessar o site:</titulo>
+            <descricao>
+                <p>Para desfrutar do site criado, basta dirigir-se ao seu navegador web e acessar o seguinte endereço:</p>
+                <code>http://localhost:1503</code>
+            </descricao>
+        </passo>
+    </instrucoes_de_uso>
+
+    <paginas_do_site>
+        <descricao>
+            <p>O aspeto do site permanece exatamente o mesmo que foi desenvolvido no TPC4 da semana anterior. Para referência e detalhes sobre as páginas, consulte o <a href="https://github.com/JoaoCoelho2003/EngWeb2024/tree/main/TPC4">TPC4</a>.</p>
+        </descricao>
+    </paginas_do_site>
 </doc>

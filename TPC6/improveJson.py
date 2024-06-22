@@ -24,7 +24,7 @@ def update_periodos(data):
             periodos.append(compositor["periodo"])
 
     periodos = list(set(periodos))
-    periodos_separator = [{"id": name} for i, name in enumerate(periodos, 1)]
+    periodos_separator = [{"_id": name} for i, name in enumerate(periodos, 1)]
     periodos_data = periodos_separator
     return periodos_data
 
@@ -33,13 +33,13 @@ def write_json(data, filename):
         json.dump(data, file, indent=4)
 
 def main():
-    data = read_json_file("compositores.json")
+    data = read_json_file("datasets/compositores.json")
     
     compositores_data = update_compositores(data)
     periodos_data = update_periodos(data)
     
-    write_json(compositores_data, "compositores_array.json")
-    write_json(periodos_data, "periodos.json")
+    write_json(compositores_data, "datasets/compositoresFinal.json")
+    write_json(periodos_data, "datasets/periodos.json")
 
 if __name__ == "__main__":
     main()

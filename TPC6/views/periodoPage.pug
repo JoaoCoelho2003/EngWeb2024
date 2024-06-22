@@ -11,7 +11,7 @@ block content
                     ul
                         each compositor in compositores
                             li
-                                a(href=`/compositores/${compositor.id}`)= compositor.nome
+                                a(href=`/compositores/${compositor._id}`)= compositor.nome
         footer.w3-container.w3-teal
             address Gerado por EngWeb2024 em #{data} - 
                 a(href="/periodos") Return

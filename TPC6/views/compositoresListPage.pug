@@ -19,19 +19,19 @@ block content
                     th periodo
                 each item in lista
                     tr
-                        td= item.id
+                        td= item._id
                         td
-                            a(href=`/compositores/${item.id}`)= item.nome
+                            a(href=`/compositores/${item._id}`)= item.nome
                         td= item.bio
                         td= item.dataNasc
                         td= item.dataObito
                         td= item.periodo
                         td
                             span [
-                                a(href=`/compositores/edit/${item.id}`) Edit
+                                a(href=`/compositores/edit/${item._id}`) Edit
                             span ]
                             span [
-                                a(href=`/compositores/delete/${item.id}`) Delete
+                                a(href=`/compositores/delete/${item._id}`) Delete
                             span ]
         footer.w3-container.w3-blue
             h5 Gerado por EngWeb2024 in #{data} - 

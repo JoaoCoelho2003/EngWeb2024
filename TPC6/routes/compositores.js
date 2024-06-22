@@ -1,17 +1,18 @@
 var express = require('express');
 var router = express.Router();
-var axios = require('axios')
+const compositorController = require('../controllers/compositores');
 
 /* GET composers listing. */
 router.get('/', function(req, res, next) {
-  var d = new Date().toISOString().substring(0, 16)
-  axios.get("http://localhost:17001/compositores")
-    .then(resp => {
-        res.status(200).render('compositoresListPage', {lista: resp.data, data: d, title: 'Compositores'})
-    })
-    .catch(erro => {
-        res.status(501).render('error', {error: 'Error fetching compositores'})
-    })
+    var d = new Date().toISOString().substring(0, 16)
+    compositorController.list()
+        .then(resp => {
+            console.log(resp)
+            res.status(200).render('compositoresListPage', {lista: resp, data: d, title: 'Compositores'})
+        })
+        .catch(erro => {
+            res.status(501).render('error', {error: 'Error fetching compositores'})
+        })
 });
 
 router.get('/registo', function(req, res, next) {
@@ -20,7 +21,7 @@ router.get('/registo', function(req, res, next) {
 });
 
 router.post('/registo', function(req, res, next) {
-    axios.post("http://localhost:17001/compositores", req.body)
+    compositorController.insert(req.body)
         .then(resp => {
             res.status(200).redirect('/compositores')
         })
@@ -31,9 +32,9 @@ router.post('/registo', function(req, res, next) {
 
 router.get('/:id', function(req, res, next) {
     var d = new Date().toISOString().substring(0, 16)
-    axios.get("http://localhost:17001/compositores/" + req.params.id)
+    compositorController.lookUp(req.params.id)
         .then(resp => {
-            res.status(200).render('compositorPage', {compositor: resp.data, data: d})
+            res.status(200).render('compositorPage', {compositor: resp, data: d})
         })
         .catch(erro => {
             res.status(501).render('error', {error: 'Error fetching compositor'})
@@ -42,9 +43,9 @@ router.get('/:id', function(req, res, next) {
 
 router.get('/edit/:id', function(req, res, next) {
     var d = new Date().toISOString().substring(0, 16)
-    axios.get("http://localhost:17001/compositores/" + req.params.id)
+    compositorController.lookUp(req.params.id)
         .then(resp => {
-            res.status(200).render('editCompositorPage', {compositor: resp.data, data: d, title: 'Edit Compositor'})
+            res.status(200).render('editCompositorPage', {compositor: resp, data: d, title: 'Edit Compositor'})
         })
         .catch(erro => {
             res.status(501).render('error', {error: 'Error fetching compositor'})
@@ -52,7 +53,7 @@ router.get('/edit/:id', function(req, res, next) {
 });
 
 router.post('/edit/:id', function(req, res, next) {
-    axios.put("http://localhost:17001/compositores/" + req.params.id, req.body)
+    compositorController.update(req.params.id, req.body)
         .then(resp => {
             res.status(200).redirect('/compositores')
         })
@@ -62,7 +63,7 @@ router.post('/edit/:id', function(req, res, next) {
 });
 
 router.get('/delete/:id', function(req, res, next) {
-    axios.delete("http://localhost:17001/compositores/" + req.params.id)
+    compositorController.delete(req.params.id)
         .then(resp => {
             res.status(200).redirect('/compositores')
         })

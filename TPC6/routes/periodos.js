@@ -1,22 +1,13 @@
 var express = require('express');
 var router = express.Router();
-var axios = require('axios')
-
-function getCompositoresByPeriodo(periodo){
-    return axios.get("http://localhost:17001/compositores?periodo=" + periodo)
-    .then(resp =>{
-        return resp.data
-    })
-    .catch(erro =>{
-        throw erro
-    })
-}
+var periodoController = require('../controllers/periodos')
+var compositorController = require('../controllers/compositores')
 
 router.get('/', function(req, res, next) {
     var d = new Date().toISOString().substring(0, 16)
-    axios.get("http://localhost:17001/periodos")
+    periodoController.list()
         .then(resp => {
-            res.status(200).render('periodosListPage', {lista: resp.data, data: d, title: 'Periodos'})
+            res.status(200).render('periodosListPage', {lista: resp, data: d, title: 'Periodos'})
         })
         .catch(erro => {
             res.status(501).render('error', {error: 'Error fetching periodos'})
@@ -29,7 +20,7 @@ router.get('/registo', function(req, res, next) {
 });
 
 router.post('/registo', function(req, res, next) {
-    axios.post("http://localhost:17001/periodos", req.body)
+    periodoController.insert(req.body)
         .then(resp => {
             res.status(200).redirect('/periodos')
         })
@@ -40,9 +31,9 @@ router.post('/registo', function(req, res, next) {
 
 router.get('/:id', function(req, res, next) {
     var d = new Date().toISOString().substring(0, 16)
-    axios.get("http://localhost:17001/periodos/" + req.params.id)
+    periodoController.lookUp(req.params.id)
         .then(resp => {
-            getCompositoresByPeriodo(req.params.id)
+                compositorController.listByPeriodo(req.params.id)
                 .then(compositores => {
                     res.status(200).render('periodoPage', {periodo: req.params.id, compositores: compositores, data: d})
                 })
@@ -57,9 +48,9 @@ router.get('/:id', function(req, res, next) {
 
 router.get('/edit/:id', function(req, res, next) {
     var d = new Date().toISOString().substring(0, 16)
-    axios.get("http://localhost:17001/periodos/" + req.params.id)
+    periodoController.lookUp(req.params.id)
         .then(resp => {
-            res.status(200).render('editPeriodoPage', {periodo: resp.data, data: d, title: 'Edit Periodo'})
+            res.status(200).render('editPeriodoPage', {periodo: resp, data: d, title: 'Edit Periodo'})
         })
         .catch(erro => {
             res.status(501).render('error', {error: 'Error fetching periodo'})
@@ -67,7 +58,7 @@ router.get('/edit/:id', function(req, res, next) {
 });
 
 router.post('/edit/:id', function(req, res, next) {
-    axios.put("http://localhost:17001/periodos/" + req.params.id, req.body)
+    periodoController.update(req.params.id, req.body)
         .then(resp => {
             res.status(200).redirect('/periodos')
         })
@@ -77,7 +68,7 @@ router.post('/edit/:id', function(req, res, next) {
 });
 
 router.get('/delete/:id', function(req, res, next) {
-    axios.delete("http://localhost:17001/periodos/" + req.params.id)
+    periodoController.delete(req.params.id)
         .then(resp => {
             res.status(200).redirect('/periodos')
         })

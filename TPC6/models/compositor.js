@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 var compositorSchema = new mongoose.Schema({
-    id : String,
+    _id : String,
     nome : String,
     bio : String,
     dataNasc : String,
@@ -9,4 +9,4 @@ var compositorSchema = new mongoose.Schema({
     periodo : String
 }, {versionKey: false});
 
-module.exports = mongoose.model('compositor', compositorSchema);
+module.exports = mongoose.model('compositores', compositorSchema, 'compositores');
